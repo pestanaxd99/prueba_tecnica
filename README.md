@@ -1,30 +1,30 @@
+# Prueba Técnica - Gestión de Tareas
 
+## Descripción
+Aplicación fullstack para gestión de tareas con autenticación de usuarios.
 
-## Requisitos previos para inicializar Backend
+## Requisitos del Sistema
 
-Desde la carpeta raíz llamada "backend":
-npm install
-node app.js
+### Backend
+- Node.js
+- MySQL
+- npm
 
-## Requisitos previos para inicializar Frontend
-
+### Frontend
 - Node.js v16.x o superior
 - npm v8.x o superior
 - Angular CLI v15+
-- Backend corriendo en `http://localhost:3000`
 
-Desde la carpeta raíz llamada "frontend"
-npm install
-ng serve
+## Instalación y Configuración
 
-Estructura de la base de datos:
--- Crear la base de datos
+### Base de Datos
+1. Ejecutar los siguientes comandos en MySQL:
+
+```sql
 CREATE DATABASE IF NOT EXISTS tasks_db;
 
--- Usar la base de datos
 USE tasks_db;
 
--- Tabla de usuarios
 CREATE TABLE IF NOT EXISTS usuarios (
   id INT AUTO_INCREMENT PRIMARY KEY,
   nombre VARCHAR(100) NOT NULL,
@@ -33,7 +33,6 @@ CREATE TABLE IF NOT EXISTS usuarios (
   creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Tabla de tareas
 CREATE TABLE tareas (
   id INT AUTO_INCREMENT PRIMARY KEY,
   titulo VARCHAR(100) NOT NULL,
@@ -45,22 +44,46 @@ CREATE TABLE tareas (
   FOREIGN KEY (id_usuario) REFERENCES usuarios(id) ON DELETE CASCADE
 );
 
-Configuracion del archivo .env
-# Configuración de Base de Datos
-DB_HOST=localhost
-DB_USER=root
-DB_PASSWORD=
-DB_NAME=prueba_tecnica
+## Instrucciones de Uso
 
-# Configuración JWT
-JWT_SECRET=sdjhfdskjfhsdjkfhsdkjhfdksjhfdskf
-JWT_EXPIRES_IN=1h
-JWT_ISSUER=prueba-tecnica-backend
-JWT_AUDIENCE=prueba-tecnica-frontend
+### Registro de Usuarios
+1. Accede a la aplicación en `http://localhost:4200`
+2. Haz clic en "Registrarse" en la esquina superior derecha
+3. Completa el formulario con:
+   - Nombre completo
+   - Email válido
+   - Contraseña (mínimo 6 caracteres)
+4. Haz clic en "Crear cuenta"
 
-# Configuración del Servidor
-PORT=3000
-NODE_ENV=development
+### Inicio de Sesión
+1. En la página principal, ingresa tu email y contraseña
+2. Haz clic en "Iniciar Sesión"
+3. Serás redirigido al dashboard de tareas
 
-# Opcional: Configuración de logs
-DEBUG=express:*
+### Gestión de Tareas
+
+#### Crear una nueva tarea
+1. Haz clic en el botón "+ Nueva Tarea"
+2. Completa el formulario:
+   - Título (obligatorio)
+   - Descripción (opcional)
+3. Haz clic en "Guardar"
+
+#### Editar una tarea
+1. En la lista de tareas, haz clic en el ícono de edición (✏️)
+2. Modifica los campos necesarios
+3. Haz clic en "Actualizar"
+
+#### Cambiar estado de tarea
+1. Localiza la tarea en la lista
+2. Haz clic en el checkbox para marcarla como completada/pendiente
+
+### Cerrar Sesión
+1. Haz clic en tu nombre de usuario en la esquina superior derecha
+2. Selecciona "Cerrar Sesión"
+
+## Notas Importantes
+- Necesitas estar autenticado para acceder al dashboard de tareas
+- Las tareas son personales (cada usuario solo ve las suyas)
+- La sesión se mantiene activa por 1 hora
+- Si tienes problemas, verifica que el backend esté corriendo en `http://localhost:3000`
