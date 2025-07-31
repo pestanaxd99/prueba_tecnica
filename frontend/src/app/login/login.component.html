@@ -1,0 +1,43 @@
+<mat-card class="login-card">
+  <mat-card-header>
+    <mat-card-title>Iniciar Sesión</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" type="email">
+        <mat-error *ngIf="loginForm.get('email')?.hasError('required')">
+          Email es requerido
+        </mat-error>
+        <mat-error *ngIf="loginForm.get('email')?.hasError('email')">
+          Email no válido
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Contraseña</mat-label>
+        <input matInput formControlName="password" type="password">
+        <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
+          Contraseña es requerida
+        </mat-error>
+      </mat-form-field>
+
+      <button 
+        mat-raised-button 
+        color="primary" 
+        type="submit"
+        [disabled]="loginForm.invalid || isLoading"
+        class="full-width"
+      >
+        <span *ngIf="!isLoading">Iniciar Sesión</span>
+        <mat-spinner *ngIf="isLoading" diameter="24"></mat-spinner>
+      </button>
+    </form>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <a mat-button routerLink="/auth/register">¿No tienes cuenta? Regístrate</a>
+  </mat-card-actions>
+</mat-card>

@@ -1,0 +1,51 @@
+<mat-card>
+  <mat-card-header>
+    <div class="header-content">
+      <div>
+        <mat-card-title>Mis Tareas</mat-card-title>
+        <mat-card-subtitle>Gestiona tus tareas pendientes</mat-card-subtitle>
+      </div>
+      <button mat-icon-button color="warn" (click)="logout()" matTooltip="Cerrar sesión">
+        <mat-icon>logout</mat-icon>
+      </button>
+    </div>
+  </mat-card-header>
+
+  <mat-card-content>
+    <div class="filter-actions">
+      <button mat-button (click)="filterStatus = 'all'">Todas</button>
+      <button mat-button (click)="filterStatus = 'pendiente'">Pendientes</button>
+      <button mat-button (click)="filterStatus = 'completado'">Completadas</button>
+    </div>
+
+    <mat-list>
+      <mat-list-item *ngFor="let task of filteredTasks">
+        <h3 mat-line>{{task.titulo}}</h3>
+        <p mat-line>{{task.descripcion}}</p>
+        <span mat-line>
+          Estado: 
+          <strong [style.color]="task.estatus === 'completado' ? 'green' : 'orange'">
+            {{task.estatus | titlecase}}
+          </strong>
+        </span>
+        
+        <button mat-icon-button color="primary" [routerLink]="['/tasks/edit', task.id]">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="deleteTask(task.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-list-item>
+    </mat-list>
+
+    <mat-spinner *ngIf="isLoading" diameter="40"></mat-spinner>
+    <p *ngIf="!isLoading && filteredTasks.length === 0">No hay tareas para mostrar</p>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button mat-raised-button color="primary" routerLink="/tasks/new">
+      <mat-icon>add</mat-icon>
+      Nueva Tarea
+    </button>
+  </mat-card-actions>
+</mat-card>

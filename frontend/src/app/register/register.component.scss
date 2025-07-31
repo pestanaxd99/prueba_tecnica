@@ -1,0 +1,14 @@
+.register-card {
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 2rem;
+
+  .full-width {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  mat-spinner {
+    margin: 0 auto;
+  }
+}
