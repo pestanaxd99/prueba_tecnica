@@ -48,7 +48,7 @@ CREATE TABLE tareas (
 
 ### Registro de Usuarios
 1. Accede a la aplicación en `http://localhost:4200`
-2. Haz clic en "Registrarse" en la esquina superior derecha
+2. Haz clic en "Registrarse" 
 3. Completa el formulario con:
    - Nombre completo
    - Email válido
@@ -69,19 +69,12 @@ CREATE TABLE tareas (
    - Descripción (opcional)
 3. Haz clic en "Guardar"
 
-#### Editar una tarea
-1. En la lista de tareas, haz clic en el ícono de edición (✏️)
-2. Modifica los campos necesarios
-3. Haz clic en "Actualizar"
-
 #### Cambiar estado de tarea
 1. Localiza la tarea en la lista
 2. Haz clic en el checkbox para marcarla como completada/pendiente
 
 ### Cerrar Sesión
-1. Haz clic en tu nombre de usuario en la esquina superior derecha
-2. Selecciona "Cerrar Sesión"
-
+1. Clic en el icono de la esquina superior derecha
 ## Notas Importantes
 - Necesitas estar autenticado para acceder al dashboard de tareas
 - Las tareas son personales (cada usuario solo ve las suyas)
