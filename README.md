@@ -21,9 +21,9 @@ Aplicación fullstack para gestión de tareas con autenticación de usuarios.
 1. Ejecutar los siguientes comandos en MySQL:
 
 ```sql
-CREATE DATABASE IF NOT EXISTS tasks_db;
+CREATE DATABASE IF NOT EXISTS prueba_tecnica;
 
-USE tasks_db;
+USE prueba_tecnica;
 
 CREATE TABLE IF NOT EXISTS usuarios (
   id INT AUTO_INCREMENT PRIMARY KEY,
@@ -43,6 +43,14 @@ CREATE TABLE tareas (
   actualizado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   FOREIGN KEY (id_usuario) REFERENCES usuarios(id) ON DELETE CASCADE
 );
+
+Ir a la raíz del directorio "backend" y ejecutar:
+npm i
+node app.js
+
+Ir a la raíz del directorio "frontend" y ejecutar:
+npm i
+ng serve
 
 ## Instrucciones de Uso
 
