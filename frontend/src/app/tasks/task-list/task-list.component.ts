@@ -22,10 +22,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     MatIconModule,
     MatListModule,
     MatProgressSpinnerModule,
-    RouterModule
+    RouterModule,
   ],
   templateUrl: './task-list.component.html',
-  styleUrls: ['./task-list.component.scss']
+  styleUrls: ['./task-list.component.scss'],
+
 })
 export class TaskListComponent implements OnInit {
   tasks: Task[] = [];
@@ -59,11 +60,28 @@ export class TaskListComponent implements OnInit {
   }
 
   deleteTask(id: number) {
-    if (confirm('¿Estás seguro de eliminar esta tarea?')) {
-      this.tasksService.deleteTask(id).subscribe(() => {
-        this.tasks = this.tasks.filter(task => task.id !== id);
+    if (confirm('¿Estás seguro de eliminar esta tarea permanentemente?')) {
+      this.tasksService.deleteTask(id).subscribe({
+        next: () => {
+          this.tasks = this.tasks.filter(task => task.id !== id);
+          this.snackBar.open('Tarea eliminada correctamente', 'Cerrar', {
+            duration: 3000,
+            panelClass: ['success-snackbar']
+          });
+        },
+        error: (error) => {
+          console.error('Error deleting task:', error);
+          this.snackBar.open('Error al eliminar la tarea', 'Cerrar', {
+            duration: 3000,
+            panelClass: ['error-snackbar']
+          });
+        }
       });
     }
+  }
+
+  editTask(taskId: number) {
+    this.router.navigate(['/tasks/edit', taskId]);
   }
 
   logout() {

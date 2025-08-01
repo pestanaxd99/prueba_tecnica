@@ -44,6 +44,27 @@ CREATE TABLE tareas (
   FOREIGN KEY (id_usuario) REFERENCES usuarios(id) ON DELETE CASCADE
 );
 
+Archivo .env tiene la siguiente configuración:
+
+# Configuración de Base de Datos
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=
+DB_NAME=prueba_tecnica
+
+# Configuración JWT
+JWT_SECRET=
+JWT_EXPIRES_IN=1h
+JWT_ISSUER=prueba-tecnica-backend
+JWT_AUDIENCE=prueba-tecnica-frontend
+
+# Configuración del Servidor
+PORT=3000
+NODE_ENV=development
+
+# Opcional: Configuración de logs
+DEBUG=express:*
+
 Ir a la raíz del directorio "backend" y ejecutar:
 npm i
 node app.js
