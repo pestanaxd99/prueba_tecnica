@@ -116,3 +116,40 @@ ng serve
 - Las tareas son personales (cada usuario solo ve las suyas)
 - La sesión se mantiene activa por 1 hora
 - Si tienes problemas, verifica que el backend esté corriendo en `http://localhost:3000`
+
+
+Lista de ENDPOINTS:
+
+GET /tasks
+
+  Obtener todas las tareas del usuario (ordenadas por fecha DESC).
+
+POST /tasks
+
+  Crear nueva tarea.
+
+  Body:
+  
+  json
+  {
+    "titulo": "(requerido)",
+    "descripcion": "(opcional)",
+    "estatus": "(opcional, default: 'pendiente')"
+  }
+
+PUT /tasks/:id
+
+  Actualizar tarea existente.
+  
+  Body (campos opcionales):
+  
+  json
+  {
+    "titulo": "(opcional)",
+    "descripcion": "(opcional)",
+    "estatus": "(opcional)"
+  }
+
+DELETE /tasks/:id
+
+Eliminar tarea.
