@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card class="task-form-card">
   <mat-card-header>
     <mat-card-title>
       {{isEditMode ? 'Editar Tarea' : 'Nueva Tarea'}}
@@ -6,10 +6,11 @@
   </mat-card-header>
 
   <mat-card-content>
-    <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="taskForm" (ngSubmit)="onSubmit()" class="task-form">
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Título</mat-label>
         <input matInput formControlName="titulo">
+        <mat-icon matPrefix>title</mat-icon>
         <mat-error *ngIf="taskForm.get('titulo')?.hasError('required')">
           El título es requerido
         </mat-error>
@@ -17,22 +18,45 @@
 
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Descripción</mat-label>
-        <textarea matInput formControlName="descripcion" rows="3"></textarea>
+        <textarea matInput formControlName="descripcion" rows="4"></textarea>
+        <mat-icon matPrefix>description</mat-icon>
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="full-width">
         <mat-label>Estado</mat-label>
         <mat-select formControlName="estatus">
-          <mat-option value="pendiente">Pendiente</mat-option>
-          <mat-option value="completado">Completado</mat-option>
+          <mat-option value="pendiente">
+            <div class="status-option">
+              <svg class="status-icon pending" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"
+                aria-hidden="true">
+                <path
+                  d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z" />
+              </svg>
+              <span>Pendiente</span>
+            </div>
+          </mat-option>
+          <mat-option value="completado">
+            <div class="status-option">
+              <svg class="status-icon completed" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"
+                aria-hidden="true">
+                <path
+                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+              </svg>
+              <span>Completado</span>
+            </div>
+          </mat-option>
         </mat-select>
       </mat-form-field>
 
       <div class="form-actions">
-        <button mat-raised-button color="primary" type="submit" [disabled]="taskForm.invalid || isLoading">
-          {{isEditMode ? 'Actualizar' : 'Crear'}}
+        <button mat-raised-button color="primary" type="submit" [disabled]="taskForm.invalid || isLoading"
+          class="submit-btn">
+          <span *ngIf="!isLoading">{{isEditMode ? 'Actualizar' : 'Crear'}}</span>
+          <mat-spinner *ngIf="isLoading" diameter="24"></mat-spinner>
         </button>
-        <button mat-button type="button" routerLink="/tasks">Cancelar</button>
+        <button mat-stroked-button type="button" routerLink="/tasks" class="cancel-btn">
+          Cancelar
+        </button>
       </div>
     </form>
   </mat-card-content>

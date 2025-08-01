@@ -1,14 +1,195 @@
 .register-card {
   max-width: 500px;
   margin: 2rem auto;
-  padding: 2rem;
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  position: relative;
+  overflow: hidden;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #3f51b5, #2196f3);
+  }
+
+  mat-card-header {
+    margin-bottom: 2rem;
+    text-align: center;
+    justify-content: center;
+
+    mat-card-title {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: #3f51b5;
+      margin-bottom: 0.5rem;
+    }
+
+    mat-card-subtitle {
+      color: #666;
+      font-size: 1rem;
+    }
+  }
+
+  mat-card-content {
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+  }
 
   .full-width {
     width: 100%;
+  }
+
+  .name-fields {
+    display: flex;
+    gap: 1rem;
+
+    .half-width {
+      flex: 1;
+    }
+  }
+
+  mat-form-field {
+    .mat-form-field-outline {
+      color: rgba(0, 0, 0, 0.1);
+    }
+
+    .mat-form-field-outline-thick {
+      color: #3f51b5;
+    }
+
+    &.mat-focused {
+      .mat-form-field-label {
+        color: #3f51b5;
+      }
+    }
+
+    .mat-input-element {
+      padding: 0.5em 0;
+      font-size: 1rem;
+    }
+
+    mat-icon {
+      color: #666;
+      margin-right: 8px;
+    }
+  }
+
+  .terms-checkbox {
+    margin: 1rem 0;
+    font-size: 0.9rem;
+    color: #555;
+
+    .terms-link {
+      color: #3f51b5;
+      text-decoration: none;
+      font-weight: 500;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .terms-error {
+    display: block;
+    margin-top: -0.8rem;
     margin-bottom: 1rem;
+    font-size: 0.85rem;
+    color: #f44336;
+  }
+
+  button[type="submit"] {
+    margin-top: 0.5rem;
+    padding: 0.8rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 6px rgba(63, 81, 181, 0.2);
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 10px rgba(63, 81, 181, 0.3);
+    }
+
+    &:disabled {
+      background-color: #e0e0e0;
+      color: #9e9e9e;
+      transform: none;
+      box-shadow: none;
+    }
   }
 
   mat-spinner {
     margin: 0 auto;
+    circle {
+      stroke: #ffffff;
+    }
+  }
+
+  mat-card-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5rem;
+    padding: 0;
+
+    a {
+      color: #3f51b5;
+      font-weight: 500;
+      text-decoration: none;
+      transition: color 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+
+      &:hover {
+        color: #303f9f;
+        text-decoration: underline;
+      }
+
+      &::before {
+        content: '←';
+        font-size: 1.2rem;
+        transition: transform 0.2s ease;
+      }
+
+      &:hover::before {
+        transform: translateX(-3px);
+      }
+    }
+  }
+
+  mat-error {
+    font-size: 0.85rem;
+    margin-top: 0.3rem;
+    color: #f44336;
+    animation: fadeIn 0.3s ease;
+  }
+
+  mat-hint {
+    font-size: 0.8rem;
+    color: #666;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 }

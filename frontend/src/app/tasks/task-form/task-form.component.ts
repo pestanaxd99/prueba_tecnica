@@ -6,6 +6,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatIconModule } from '@angular/material/icon'; // <-- Añade esta línea
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'; // <-- Añade esta línea
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { TasksService } from '../tasks.service';
 import { Task } from '../task.model';
@@ -23,7 +25,9 @@ import { CommonModule } from '@angular/common';
     MatSelectModule,
     MatButtonModule,
     RouterModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatIconModule, // <-- Añade esta línea
+    MatProgressSpinnerModule // <-- Añade esta línea
   ],
   templateUrl: './task-form.component.html',
   styleUrls: ['./task-form.component.scss']

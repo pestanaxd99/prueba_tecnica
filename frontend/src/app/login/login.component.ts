@@ -27,7 +27,7 @@ import { environment } from '../../environments/environments';
     MatButtonModule,
     MatSnackBarModule,
     MatProgressSpinnerModule,
-    HttpClientModule
+    HttpClientModule,
   ]
 })
 export class LoginComponent {
