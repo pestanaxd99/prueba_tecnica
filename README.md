@@ -96,14 +96,21 @@ ng serve
 2. Completa el formulario:
    - Título (obligatorio)
    - Descripción (opcional)
+   - Estado (Obligatorio)
 3. Haz clic en "Guardar"
 
-#### Cambiar estado de tarea
+#### Editar una tarea
+1. Haz clic sobre el icono de la tarea que deseas editar
+2. Modifica los datos de la tarea y da clic en Guardar
+
+#### Elimina una tarea
 1. Localiza la tarea en la lista
-2. Haz clic en el checkbox para marcarla como completada/pendiente
+2. Haz clic en el icono de la tarea que deseas eliminar
+3. Confirma la tarea que deseas eliminar
 
 ### Cerrar Sesión
 1. Clic en el icono de la esquina superior derecha
+
 ## Notas Importantes
 - Necesitas estar autenticado para acceder al dashboard de tareas
 - Las tareas son personales (cada usuario solo ve las suyas)
