@@ -10,6 +10,7 @@ import { TasksService } from '../tasks.service';
 import { Task } from '../task.model';
 import { AuthService } from '../../services/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 @Component({
@@ -23,6 +24,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     MatListModule,
     MatProgressSpinnerModule,
     RouterModule,
+    MatTooltipModule
   ],
   templateUrl: './task-list.component.html',
   styleUrls: ['./task-list.component.scss'],
@@ -39,6 +41,10 @@ export class TaskListComponent implements OnInit {
   ngOnInit() {
     this.loadTasks();
   }
+
+  shouldShowTooltip(title: string): boolean {
+  return title.length > 30;
+}
 
   loadTasks() {
     this.isLoading = true;

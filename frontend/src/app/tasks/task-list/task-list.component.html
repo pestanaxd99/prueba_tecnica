@@ -1,5 +1,5 @@
-<mat-card>
-  <mat-card-header>
+<mat-card class="task-card">
+  <mat-card-header class="card-header">
     <div class="header-content">
       <div>
         <mat-card-title>Mis Tareas</mat-card-title>
@@ -13,40 +13,53 @@
 
   <mat-card-content>
     <div class="filter-actions">
-      <button mat-button (click)="filterStatus = 'all'">Todas</button>
-      <button mat-button (click)="filterStatus = 'pendiente'">Pendientes</button>
-      <button mat-button (click)="filterStatus = 'completado'">Completadas</button>
+      <button mat-button [class.active]="filterStatus === 'all'" (click)="filterStatus = 'all'">
+        Todas
+      </button>
+      <button mat-button [class.active]="filterStatus === 'pendiente'" (click)="filterStatus = 'pendiente'">
+        Pendientes
+      </button>
+      <button mat-button [class.active]="filterStatus === 'completado'" (click)="filterStatus = 'completado'">
+        Completadas
+      </button>
     </div>
 
-    <mat-list>
-  <mat-list-item *ngFor="let task of filteredTasks" class="task-item">
-    <div class="task-content">
-      <h3 mat-line>{{task.titulo}}</h3>
-      <p mat-line>{{task.descripcion}}</p>
-      <span mat-line>
-        Estado: 
-        <strong [style.color]="task.estatus === 'completado' ? 'green' : 'orange'">
-          {{task.estatus | titlecase}}
-        </strong>
-      </span>
+    <div class="task-list-container">
+      <mat-list class="task-list">
+        <mat-list-item *ngFor="let task of filteredTasks" class="task-item">
+          <div class="task-content">
+            <div class="task-info">
+              <h3 class="task-title" matTooltip="{{task.titulo}}"
+                [matTooltipDisabled]="!shouldShowTooltip(task.titulo)">
+                {{task.titulo}}
+              </h3>
+              <p class="task-description">{{task.descripcion}}</p>
+              <span class="task-status" [class.completed]="task.estatus === 'completado'">
+                {{task.estatus | titlecase}}
+              </span>
+            </div>
+            <div class="task-actions">
+              <button mat-icon-button color="primary" [routerLink]="['/tasks/edit', task.id]" matTooltip="Editar">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-icon-button color="warn" (click)="deleteTask(task.id)" matTooltip="Eliminar">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </div>
+        </mat-list-item>
+      </mat-list>
+
+      <div class="empty-state" *ngIf="!isLoading && filteredTasks.length === 0">
+        <mat-icon>assignment</mat-icon>
+        <p>No hay tareas para mostrar</p>
+      </div>
     </div>
-    
-    <div class="task-actions">
-      <button mat-icon-button color="primary" [routerLink]="['/tasks/edit', task.id]">
-        <mat-icon>edit</mat-icon>
-      </button>
-      <button mat-icon-button color="warn" (click)="deleteTask(task.id)">
-        <mat-icon>delete</mat-icon>
-      </button>
-    </div>
-  </mat-list-item>
-</mat-list>
 
     <mat-spinner *ngIf="isLoading" diameter="40"></mat-spinner>
-    <p *ngIf="!isLoading && filteredTasks.length === 0">No hay tareas para mostrar</p>
   </mat-card-content>
 
-  <mat-card-actions>
+  <mat-card-actions class="card-actions">
     <button mat-raised-button color="primary" routerLink="/tasks/new">
       <mat-icon>add</mat-icon>
       Nueva Tarea
