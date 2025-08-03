@@ -150,6 +150,8 @@ PUT /tasks/:id
     "estatus": "(opcional)"
   }
 
-DELETE /tasks/:id
 
-Eliminar tarea.
+Eliminar tarea
+
+
+DELETE /tasks/:id
